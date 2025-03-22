@@ -6,19 +6,28 @@
 /*   By: arina <arina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:01:13 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/22 10:09:35 by arina            ###   ########.fr       */
+/*   Updated: 2025/03/22 18:14:53 by arina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*free_func(char *buffer, char **result)
+{
+	free(buffer);
+	buffer = NULL;
+	free(*result);
+	*result = NULL;
+	return (NULL);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*a;
 	size_t	i;
 	size_t	s_len;
 	size_t	malloc_len;
-	
+
 	s_len = 0;
 	while (s[s_len])
 		s_len++;
@@ -78,4 +87,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	a[i + j] = '\0';
 	return (a);
+}
+
+char	*check_read(char **result)
+{
+	free(*result);
+	*result = NULL;
+	return (NULL);
 }
