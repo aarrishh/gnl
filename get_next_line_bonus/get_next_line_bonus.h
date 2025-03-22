@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 20:51:28 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/22 19:40:24 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/03/22 19:40:19 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
+# include <limits.h>
 
 int		nl_exists(char *buffer);
 int		ft_strlen(const char *str);

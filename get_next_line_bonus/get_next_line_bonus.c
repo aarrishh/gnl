@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:01:13 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/22 19:49:36 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/03/22 19:39:22 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,40 +93,9 @@ char	*cur_line(char *str_join)
 	return (ft_substr(str_join, 0, i));
 }
 
-char	*ft_strdup(char *src)
-{
-	size_t	i;
-	size_t	len;
-	char	*dest;
-
-	i = 0;
-	len = 0;
-	if (!src)
-		return (NULL);
-	while (src[len])
-		len++;
-	dest = (char *)malloc(sizeof(char) * (len + 1));
-	if (!dest)
-		return (NULL);
-	while (src[i])
-	{
-		dest[i] = src[i];
-		++i;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-void foo(char **res, char *uf)
-{
-	*res = ft_strdup("tesssssarinassss");
-	uf[0] = 'V';
-
-}
-
 char	*get_next_line(int fd)
 {
-	static char			*result;
+	static char			*result[FOPEN_MAX];
 	ssize_t				count_bytes;
 	char				*return_str;
 	char				*str_join;
@@ -135,41 +104,36 @@ char	*get_next_line(int fd)
 	str_join = NULL;
 	buffer = NULL;
 	count_bytes = 1;
-	// buffer = ft_strdup("vay araaaa");
-	// foo(&result, buffer);
-	// printf("hres->%s\n", result);
-	// printf("hressssssssssss-s>%s\n", buffer);
-
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (check_read(&result));
-	str_join = simulation(fd, &result, buffer, &count_bytes);
-	if (*result == '\0' && count_bytes == 0)
-		return (free_func(buffer, &result));
-	result = left_over(str_join);
+		return (check_read(&result[fd]));
+	str_join = simulation(fd, &result[fd], buffer, &count_bytes);
+	if (*result[fd] == '\0' && count_bytes == 0)
+		return (free_func(buffer, &result[fd]));
+	result[fd] = left_over(str_join);
 	return_str = cur_line(str_join);
 	free(str_join);
 	return (return_str);
 }
 
-// int main()
-// {
-// 	int a = open("file.txt", O_RDONLY);
-// 	// int fd2 = open("example.txt",O_RDONLY);
-//     char *res = get_next_line(a);
-//     // char *res1 = get_next_line(fd2);
-//     // char *res2 = get_next_line(a);
-//     // char *res3 = get_next_line(fd2);
-//     // char *res4 = get_next_line(a);
-//     // printf("file->%s", res);
-//     // printf("example->%s", res1);
-//     // printf("fole->%s", res2);
-//     // printf("exampe->%s", res3);
-//     // printf("file->%s", res4);
-//     // free(res);
-//     // free(res1);
-//     // free(res2);
-//     // free(res3);
-//     // free(res4);
-//     close(a);
-//     return 0;
-// }
+int main()
+{
+	int a = open("file.txt", O_RDONLY);
+	int fd2 = open("example.txt",O_RDONLY);
+    char *res = get_next_line(a);
+    char *res1 = get_next_line(fd2);
+    char *res2 = get_next_line(a);
+    char *res3 = get_next_line(fd2);
+    char *res4 = get_next_line(a);
+    printf("file->%s", res);
+    printf("example->%s", res1);
+    printf("fole->%s", res2);
+    printf("exampe->%s", res3);
+    printf("file->%s", res4);
+    free(res);
+    free(res1);
+    free(res2);
+    free(res3);
+    free(res4);
+    close(a);
+    return 0;
+}
