@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arina <arina@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 20:51:28 by arimanuk          #+#    #+#             */
+/*   Updated: 2025/03/22 23:50:25 by arina            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+# include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <errno.h>
+# include <limits.h>
+
+int		nl_exists(char *buffer);
+int		ft_strlen(const char *str);
+char	*left_over(char *str_join);
+char	*get_next_line(int fd);
+char	*cur_line(char *str_join);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*free_func(char *buffer, char **result);
+char	*check_read(char **result);
+
+#endif
