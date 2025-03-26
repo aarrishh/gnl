@@ -6,11 +6,11 @@
 /*   By: arina <arina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 19:13:06 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/23 14:44:45 by arina            ###   ########.fr       */
+/*   Updated: 2025/03/25 22:49:53 by arina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*free_func(char *buffer, char **result)
 {

@@ -6,7 +6,7 @@
 /*   By: arina <arina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:01:13 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/23 14:45:14 by arina            ###   ########.fr       */
+/*   Updated: 2025/03/25 22:55:34 by arina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*get_next_line(int fd)
 	str_join = NULL;
 	buffer = NULL;
 	count_bytes = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, BUFFER_SIZE == 0) < 0)
 		return (check_read(&result));
 	str_join = simulation(fd, &result, buffer, &count_bytes);
 	if (*result == '\0' && count_bytes == 0)
@@ -124,7 +124,7 @@ char	*get_next_line(int fd)
 //     // char *res2 = get_next_line(a);
 //     // char *res3 = get_next_line(fd2);
 //     // char *res4 = get_next_line(a);
-//     // printf("file->%s", res);
+//     printf("file->%s", res);
 //     // printf("example->%s", res1);
 //     // printf("fole->%s", res2);
 //     // printf("exampe->%s", res3);
