@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arina <arina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 19:13:06 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/26 19:27:53 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:23:27 by arina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,16 @@
 
 char	*free_func(char *buffer, char **result)
 {
-	free(buffer);
-	buffer = NULL;
-	free(*result);
-	*result = NULL;
+	if (buffer)
+	{
+		free(buffer);
+		buffer = NULL;
+	}
+	if (result && *result)
+	{
+		free(*result);
+		*result = NULL;
+	}
 	return (NULL);
 }
 

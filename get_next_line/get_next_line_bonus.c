@@ -6,7 +6,7 @@
 /*   By: arina <arina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:01:13 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/26 19:52:34 by arina            ###   ########.fr       */
+/*   Updated: 2025/03/27 20:03:46 by arina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,24 +104,23 @@ char	*get_next_line(int fd)
 	str_join = NULL;
 	buffer = NULL;
 	count_bytes = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, BUFFER_SIZE == 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > FOPEN_MAX)
 	{
-		if (fd < FOPEN_MAX)
-		{
-			free(result[fd]);
-			result[fd] = NULL;
-		}
+		free(*result);
+		*result = NULL;
 		return (NULL);
-	}
+	}   
 	str_join = simulation(fd, &result[fd], buffer, &count_bytes);
-	if (*result[fd] == '\0' && count_bytes == 0)
+	if (result[fd] != NULL && *result[fd] == '\0' && count_bytes == 0)
 		return (free_func(buffer, &result[fd]));
+	if (!result[fd])
+		return (NULL);
 	result[fd] = left_over(str_join);
 	return_str = cur_line(str_join);
 	free(str_join);
 	return (return_str);
 }
-/*
+
 int main()
 {
 	int a = open("file.txt", O_RDONLY);
@@ -143,4 +142,4 @@ int main()
     free(res4);
     close(a);
     return 0;
-}*/
+}

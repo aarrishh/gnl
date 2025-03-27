@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arina <arina@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 21:01:13 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/03/26 19:27:26 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/03/27 20:05:21 by arina            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,36 +104,38 @@ char	*get_next_line(int fd)
 	str_join = NULL;
 	buffer = NULL;
 	count_bytes = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, BUFFER_SIZE == 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (check_read(&result));
 	str_join = simulation(fd, &result, buffer, &count_bytes);
-	if (*result == '\0' && count_bytes == 0)
+	if (result != NULL && *result == '\0' && count_bytes == 0)
 		return (free_func(buffer, &result));
+	if (!result)
+		return (NULL);
 	result = left_over(str_join);
 	return_str = cur_line(str_join);
 	free(str_join);
 	return (return_str);
 }
 
-// int main()
-// {
-// 	int a = open("file.txt", O_RDONLY);
-// 	// int fd2 = open("example.txt",O_RDONLY);
-//     char *res = get_next_line(a);
-//     // char *res1 = get_next_line(fd2);
-//     // char *res2 = get_next_line(a);
-//     // char *res3 = get_next_line(fd2);
-//     // char *res4 = get_next_line(a);
-//     printf("file->%s", res);
-//     // printf("example->%s", res1);
-//     // printf("fole->%s", res2);
-//     // printf("exampe->%s", res3);
-//     // printf("file->%s", res4);
-//     // free(res);
-//     // free(res1);
-//     // free(res2);
-//     // free(res3);
-//     // free(res4);
-//     close(a);
-//     return 0;
-// }
+int main()
+{
+	int a = open("file.txt", O_RDONLY);
+	// int fd2 = open("example.txt",O_RDONLY);
+    char *res = get_next_line(a);
+    char *res1 = get_next_line(a);
+    char *res2 = get_next_line(a);
+    char *res3 = get_next_line(a);
+    char *res4 = get_next_line(a);
+    printf("file->%s", res);
+    printf("example->%s", res1);
+    printf("fole->%s", res2);
+    printf("exampe->%s", res3);
+    printf("file->%s", res4);
+    free(res);
+    free(res1);
+    free(res2);
+    free(res3);
+    free(res4);
+    close(a);
+    return 0;
+}
